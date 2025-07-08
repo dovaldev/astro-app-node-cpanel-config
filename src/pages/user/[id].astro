@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+export async function getStaticPaths() {
+  // Demo: 3 usuarios de ejemplo
+  return [
+    { params: { id: 'astrofan' } },
+    { params: { id: 'nodehero' } },
+    { params: { id: 'cpanelmaster' } },
+  ];
+}
+
+const { id } = Astro.params;
+const now = new Date();
+const users = {
+  astrofan: {
+    name: 'Astro Fan',
+    desc: 'Explorador de las estrellas y fan de Astro 🚀',
+    color: 'from-pink-200 to-indigo-200',
+  },
+  nodehero: {
+    name: 'Node Hero',
+    desc: 'Defensor de los procesos y el event loop 🦸‍♂️',
+    color: 'from-green-200 to-blue-200',
+  },
+  cpanelmaster: {
+    name: 'cPanel Master',
+    desc: 'Domina el hosting y los paneles de control 🖥️',
+    color: 'from-yellow-100 to-orange-200',
+  },
+};
+const user = (users as Record<string, typeof users['astrofan']>)[id] || {
+  name: id,
+  desc: 'Usuario misterioso. ¿Eres tú el próximo astronauta? 👽',
+  color: 'from-gray-200 to-gray-100',
+};
+---
+<Layout>
+  <main class={`w-full max-w-2xl p-8 bg-white/90 rounded-3xl shadow-2xl border border-indigo-100 animate-fade-in`}>
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-4xl">🧑‍🚀</span>
+      <h1 class="text-2xl font-bold text-indigo-700 tracking-tight">Perfil: {user.name}</h1>
+    </div>
+    <p class="mb-4 text-lg text-gray-700">{user.desc}</p>
+    <div class="my-8 p-4 bg-indigo-50 border-l-4 border-indigo-400 rounded-xl text-indigo-900 text-lg shadow-sm">
+      <span class="block mb-2">ID de usuario: <b class="text-indigo-700">{id}</b></span>
+      <span class="block">SSR generado el <b>{now.toLocaleString()}</b></span>
+    </div>
+    <footer class="mt-8 text-sm text-gray-500 text-center">Astro SSR · {now.getFullYear()}</footer>
+  </main>
+  <style>
+    .animate-fade-in {
+      animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: none; }
+    }
+  </style>
+</Layout>

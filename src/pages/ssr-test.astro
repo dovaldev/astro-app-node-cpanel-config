@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+const now = new Date();
+const nodeVersion = process.version;
+const pid = process.pid;
+---
+<Layout>
+  <main class="w-full max-w-2xl p-8 bg-white/90 rounded-3xl shadow-2xl border border-indigo-100 animate-fade-in">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-4xl">🚀</span>
+      <h1 class="text-3xl font-bold text-indigo-700 tracking-tight">SSR Node.js Test</h1>
+    </div>
+    <p class="mb-4 text-lg text-gray-700">¡Hola, astronauta! Esta página se ha <span class="font-semibold text-indigo-600">renderizado en el servidor</span> usando <span class="font-semibold text-indigo-600">Astro SSR</span> sobre Node.js.</p>
+    <ul class="mb-6 space-y-1 text-base text-gray-800">
+      <li><b>Fecha y hora del servidor:</b> <span class="text-indigo-700">{now.toLocaleString()}</span></li>
+      <li><b>Versión de Node.js:</b> <span class="text-indigo-700">{nodeVersion}</span></li>
+      <li><b>PID del proceso:</b> <span class="text-indigo-700">{pid}</span></li>
+    </ul>
+    <div class="my-8 p-4 bg-indigo-50 border-l-4 border-indigo-400 rounded-xl text-indigo-900 text-lg shadow-sm">
+      <span class="block mb-2">¿Por qué los astronautas no usan JavaScript en el espacio?</span>
+      <b class="block">¡Porque prefieren el <span class="text-indigo-600">Node</span>.js en la Tierra! 🪐</b>
+    </div>
+    <footer class="mt-8 text-sm text-gray-500 text-center">SSR test page · {now.getFullYear()}</footer>
+  </main>
+  <style>
+    .animate-fade-in {
+      animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: none; }
+    }
+  </style>
+</Layout>

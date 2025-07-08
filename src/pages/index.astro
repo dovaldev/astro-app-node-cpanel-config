@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
-
 <Layout>
-	<Welcome />
+  <main class="w-full max-w-2xl p-4 sm:p-8 bg-white/90 rounded-3xl shadow-2xl border border-indigo-100 animate-fade-in">
+	<div class="flex items-center gap-3 mb-6">
+	  <span class="text-4xl">👨‍🚀</span>
+	  <h1 class="text-3xl font-bold text-indigo-700 tracking-tight">Astro SSR en Node.js</h1>
+	</div>
+	<p class="mb-4 text-lg text-gray-700">¡Bienvenido! Esta app está lista para funcionar en <span class="font-semibold text-indigo-600">Node.js</span> y <span class="font-semibold text-indigo-600">cPanel</span> con SSR.</p>
+  <ul class="mb-6 space-y-4 text-base text-gray-800 list-disc list-inside break-words">
+	<li>
+	  <a href="/ssr-test" class="text-indigo-700 hover:underline font-semibold">Ruta de prueba SSR</a><br />
+	  <span class="text-sm text-gray-600">Demuestra que la página se renderiza en el servidor Node.js y muestra información en tiempo real del proceso.</span>
+	</li>
+	<li>
+	  <a href="/api/hello" class="text-indigo-700 hover:underline font-semibold">API Node.js SSR</a><br />
+	  <span class="text-sm text-gray-600">Endpoint API que responde con JSON generado por Node.js en SSR.</span>
+	</li>
+	<li>
+	  <a href="/user/astrofan" class="text-indigo-700 hover:underline font-semibold">Página dinámica de usuario</a><br />
+	  <span class="text-sm text-gray-600">Ejemplo de ruta dinámica: <code>/user/[id]</code> (prueba con <a href="/user/nodehero" class="underline">nodehero</a>, <a href="/user/cpanelmaster" class="underline">cpanelmaster</a>, o cualquier otro id).</span>
+	</li>
+	<li>
+	  <a href="/doc" class="text-indigo-700 hover:underline font-semibold">Documentación del proyecto</a><br />
+	  <span class="text-sm text-gray-600">Consulta la documentación generada automáticamente desde el README.md.</span>
+	</li>
+  </ul>
+	<div class="my-8 p-4 bg-indigo-50 border-l-4 border-indigo-400 rounded-xl text-indigo-900 text-lg shadow-sm">
+	  <span class="block mb-2">¿Está Node.js arrancado y funcionando con SSR?</span>
+	  <b class="block">{typeof process !== 'undefined' ? `¡Sí! Node.js activo (versión ${process.version}) 🚀` : 'No detectado (no SSR)'}</b>
+	</div>
+	<div class="my-8 p-4 bg-indigo-50 border-l-4 border-indigo-400 rounded-xl text-indigo-900 text-lg shadow-sm">
+	  <span class="block mb-2">¿Por qué los servidores Node.js nunca se pierden?</span>
+	  <b class="block">¡Porque siempre siguen la <span class="text-indigo-600">ruta</span> correcta! 😄</b>
+	</div>
+	<footer class="mt-8 text-sm text-gray-500 text-center">Astro SSR Node.js · {new Date().getFullYear()}</footer>
+  </main>
+  <style>
+	.animate-fade-in {
+	  animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+	}
+	@keyframes fadeIn {
+	  from { opacity: 0; transform: translateY(32px); }
+	  to { opacity: 1; transform: none; }
+	}
+	main, ul, li, span, b, p {
+	  word-break: break-word;
+	}
+  </style>
 </Layout>
