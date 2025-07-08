@@ -42,36 +42,37 @@ Guía para instalar, probar y desplegar una app Astro SSR compatible con Node.js
 
 ### Pasos para desplegar en cPanel
 
-1. **Sube tu proyecto** a tu hosting (por Git, FTP o File Manager).
-2. **Instala dependencias:**
-   ```sh
-   npm install
-   ```
-3. **Compila el proyecto:**
-   ```sh
-   npm run build
-   ```
-4. **Configura Node.js Selector** en cPanel:
-   - **Application root:** la carpeta de tu proyecto (ejemplo: `astronode`)
+
+## Despliegue en cPanel (Node.js Selector)
+
+> **¡Importante!** No subas la carpeta `dist/`. El build debe hacerse en el servidor.
+
+### Pasos para desplegar Astro SSR en cPanel
+
+1. **Sube solo el código fuente** (NO subas la carpeta `dist/`).
+2. En Node.js Selector:
    - **Application startup file:**
      ```
      dist/server/entry.mjs
      ```
-   - **Comando de inicio:**
+3. Haz clic en **Run NPM Install** para instalar dependencias.
+4. Haz clic en **Run JS script** y ejecuta:
      ```sh
-     node ./dist/server/entry.mjs
+     npm run build
      ```
-   - (Opcional) Variables de entorno: usa `.env` o agrégalas en el panel.
+5. Reinicia la aplicación desde el panel.
+6. Accede a tu dominio: la app debería funcionar.
 
-5. **Inicia la app** desde el panel de cPanel.
-
-#### Notas importantes
-- No necesitas Express ni Fastify, el servidor generado por Astro ya sirve los archivos estáticos y las rutas SSR.
+#### Notas
+- Si cambias el código, repite los pasos 3-5.
+- Si necesitas variables de entorno, configúralas en el panel o usa un `.env`.
 - Si tu hosting requiere un `Procfile`, pon:
   ```
   web: node ./dist/server/entry.mjs
   ```
 - Si necesitas cambiar el puerto, usa la variable de entorno `PORT` en cPanel (por defecto es 4321).
+
+---
 
 ---
 
